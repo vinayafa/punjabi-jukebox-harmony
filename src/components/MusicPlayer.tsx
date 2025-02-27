@@ -344,62 +344,6 @@ const MusicPlayer = ({
         loop={isRepeatOn}
         preload="metadata"
       />
-      
-      {/* Add custom CSS for audio player */}
-      <style jsx>{`
-        .album-rotation {
-          transition: transform 0.2s ease;
-        }
-        .album-rotation.playing {
-          animation: spin 10s linear infinite;
-        }
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        
-        .music-progress-bar {
-          height: 4px;
-          background-color: hsl(var(--muted));
-          border-radius: 9999px;
-          cursor: pointer;
-        }
-        
-        .music-progress-bar .progress {
-          height: 100%;
-          background-color: hsl(var(--primary));
-          border-radius: 9999px;
-        }
-        
-        /* Ensure the slider thumb is visible */
-        input[type="range"]::-webkit-slider-thumb {
-          -webkit-appearance: none;
-          appearance: none;
-          width: 12px;
-          height: 12px;
-          border-radius: 50%; 
-          background: hsl(var(--primary));
-          cursor: pointer;
-        }
-        
-        input[type="range"]::-moz-range-thumb {
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-          background: hsl(var(--primary));
-          cursor: pointer;
-        }
-        
-        /* Animate the player sliding up from the bottom */
-        @keyframes slide-up {
-          from { transform: translateY(100%); }
-          to { transform: translateY(0); }
-        }
-        
-        .animate-slide-up {
-          animation: slide-up 0.3s ease-out;
-        }
-      `}</style>
     </div>
   );
 };
