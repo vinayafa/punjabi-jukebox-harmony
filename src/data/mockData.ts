@@ -142,6 +142,7 @@ export const trendingPlaylists: Playlist[] = [
   }
 ];
 
+// Updated with real audio files from Mixkit (free audio)
 export const popularSongs: Song[] = [
   {
     id: "song1",
@@ -152,7 +153,7 @@ export const popularSongs: Song[] = [
     duration: 242,
     dateAdded: "2 weeks ago",
     isLiked: true,
-    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-hip-hop-02-621.mp3"
+    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3"
   },
   {
     id: "song2",
@@ -163,7 +164,7 @@ export const popularSongs: Song[] = [
     duration: 318,
     dateAdded: "3 months ago",
     isLiked: false,
-    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-hip-hop-02-621.mp3"
+    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-india-at-dawn-515.mp3"
   },
   {
     id: "song3",
@@ -174,7 +175,7 @@ export const popularSongs: Song[] = [
     duration: 187,
     dateAdded: "1 month ago",
     isLiked: false,
-    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-hip-hop-02-621.mp3"
+    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-serene-view-142.mp3"
   },
   {
     id: "song4",
@@ -196,7 +197,7 @@ export const popularSongs: Song[] = [
     duration: 213,
     dateAdded: "1 week ago",
     isLiked: false,
-    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-hip-hop-02-621.mp3"
+    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-dreaming-big-31.mp3"
   },
   {
     id: "song6",
@@ -207,7 +208,7 @@ export const popularSongs: Song[] = [
     duration: 285,
     dateAdded: "6 months ago",
     isLiked: true,
-    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-hip-hop-02-621.mp3"
+    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-raising-me-higher-34.mp3"
   },
   {
     id: "song7",
@@ -218,7 +219,7 @@ export const popularSongs: Song[] = [
     duration: 195,
     dateAdded: "3 weeks ago",
     isLiked: false,
-    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-hip-hop-02-621.mp3"
+    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-games-worldbeat-466.mp3"
   },
   {
     id: "song8",
@@ -229,7 +230,7 @@ export const popularSongs: Song[] = [
     duration: 203,
     dateAdded: "2 weeks ago",
     isLiked: false,
-    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-hip-hop-02-621.mp3"
+    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-hazy-after-hours-132.mp3"
   },
   {
     id: "song9",
@@ -240,7 +241,7 @@ export const popularSongs: Song[] = [
     duration: 188,
     dateAdded: "5 weeks ago",
     isLiked: true,
-    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-hip-hop-02-621.mp3"
+    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-cbasing-waterfalls-424.mp3"
   },
   {
     id: "song10",
@@ -251,7 +252,7 @@ export const popularSongs: Song[] = [
     duration: 274,
     dateAdded: "4 months ago",
     isLiked: false,
-    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-hip-hop-02-621.mp3"
+    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-spirits-of-asia-571.mp3"
   }
 ];
 

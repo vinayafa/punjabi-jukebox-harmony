@@ -20,61 +20,174 @@ import {
 } from "@/data/mockData";
 import { cn } from "@/lib/utils";
 import { Song, Album, Playlist } from "@/types";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
   const [currentSong, setCurrentSong] = useState<Song | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [recentlyPlayedItems, setRecentlyPlayedItems] = useState<(Song | Album | Playlist)[]>(recentlyPlayed);
+  const [queue, setQueue] = useState<Song[]>([]);
+  const { toast } = useToast();
   
   const handlePlaySong = (song: Song) => {
     if (currentSong?.id === song.id) {
       setIsPlaying(!isPlaying);
     } else {
+      // Add to recently played if it's a song
+      updateRecentlyPlayed(song);
+      
       setCurrentSong(song);
       setIsPlaying(true);
+      
+      // Show a toast notification
+      toast({
+        title: "Now Playing",
+        description: `${song.title} by ${song.artist}`,
+      });
+      
+      // Update queue with the current song and next songs
+      const songIndex = popularSongs.findIndex(s => s.id === song.id);
+      if (songIndex !== -1) {
+        const newQueue = [...popularSongs.slice(songIndex)];
+        setQueue(newQueue);
+      }
     }
   };
   
   const handleNextSong = () => {
     const currentIndex = popularSongs.findIndex(song => song.id === currentSong?.id);
     if (currentIndex !== -1 && currentIndex < popularSongs.length - 1) {
-      setCurrentSong(popularSongs[currentIndex + 1]);
+      const nextSong = popularSongs[currentIndex + 1];
+      setCurrentSong(nextSong);
+      updateRecentlyPlayed(nextSong);
+      
+      // If it was paused, start playing the next song
+      if (!isPlaying) {
+        setIsPlaying(true);
+      }
     } else if (popularSongs.length > 0) {
-      setCurrentSong(popularSongs[0]);
+      // Loop back to the first song if we're at the end
+      const firstSong = popularSongs[0];
+      setCurrentSong(firstSong);
+      updateRecentlyPlayed(firstSong);
+      
+      if (!isPlaying) {
+        setIsPlaying(true);
+      }
     }
   };
   
   const handlePreviousSong = () => {
     const currentIndex = popularSongs.findIndex(song => song.id === currentSong?.id);
     if (currentIndex !== -1 && currentIndex > 0) {
-      setCurrentSong(popularSongs[currentIndex - 1]);
+      const prevSong = popularSongs[currentIndex - 1];
+      setCurrentSong(prevSong);
+      updateRecentlyPlayed(prevSong);
+      
+      if (!isPlaying) {
+        setIsPlaying(true);
+      }
     } else if (popularSongs.length > 0) {
-      setCurrentSong(popularSongs[popularSongs.length - 1]);
+      // Loop to the last song if we're at the beginning
+      const lastSong = popularSongs[popularSongs.length - 1];
+      setCurrentSong(lastSong);
+      updateRecentlyPlayed(lastSong);
+      
+      if (!isPlaying) {
+        setIsPlaying(true);
+      }
     }
   };
   
   const handlePlayAlbum = (album: Album) => {
-    // In a real app, we would load the first song of the album
+    // Find the first song from this album
     const song = popularSongs.find(song => song.album.includes(album.title));
+    
     if (song) {
       handlePlaySong(song);
+      
+      // Create a queue of songs from this album
+      const albumSongs = popularSongs.filter(s => s.album.includes(album.title));
+      setQueue(albumSongs);
+      
+      // Add the album to recently played
+      updateRecentlyPlayed(album);
+      
+      toast({
+        title: "Now Playing Album",
+        description: `${album.title} by ${album.artist}`,
+      });
+    } else {
+      toast({
+        title: "Album Playback Error",
+        description: "Could not find any songs in this album.",
+        variant: "destructive",
+      });
     }
   };
   
   const handlePlayPlaylist = (playlist: Playlist) => {
-    // In a real app, we would load the first song of the playlist
+    // Find the first song in this playlist
     if (playlist.songs.length > 0 && playlist.songs[0]) {
       const song = popularSongs.find(song => song.id === playlist.songs[0]);
+      
       if (song) {
         handlePlaySong(song);
+        
+        // Create a queue from the playlist's songs
+        const playlistSongs = popularSongs.filter(s => 
+          playlist.songs.includes(s.id)
+        );
+        setQueue(playlistSongs);
+        
+        // Add the playlist to recently played
+        updateRecentlyPlayed(playlist);
+        
+        toast({
+          title: "Now Playing Playlist",
+          description: `${playlist.name} by ${playlist.createdBy}`,
+        });
+      } else {
+        toast({
+          title: "Playlist Playback Error",
+          description: "Could not find songs in this playlist.",
+          variant: "destructive",
+        });
       }
+    } else {
+      toast({
+        title: "Empty Playlist",
+        description: "This playlist does not contain any songs.",
+        variant: "destructive",
+      });
     }
+  };
+  
+  // Update recently played items
+  const updateRecentlyPlayed = (item: Song | Album | Playlist) => {
+    setRecentlyPlayedItems(prev => {
+      // Remove the item if it already exists in the list
+      const filtered = prev.filter(i => {
+        if ('title' in i && 'title' in item) {
+          return i.id !== item.id;
+        } else if ('name' in i && 'name' in item) {
+          return i.id !== item.id;
+        }
+        return true;
+      });
+      
+      // Add the item to the beginning of the list
+      return [item, ...filtered].slice(0, 6);
+    });
   };
   
   // Setup initial song
   useEffect(() => {
     if (popularSongs.length > 0 && !currentSong) {
       setCurrentSong(popularSongs[0]);
+      
+      // Set initial queue
+      setQueue(popularSongs);
     }
   }, []);
   
@@ -275,6 +388,7 @@ const Index = () => {
         onPlayPause={() => setIsPlaying(!isPlaying)}
         onNext={handleNextSong}
         onPrevious={handlePreviousSong}
+        queue={queue}
       />
     </div>
   );

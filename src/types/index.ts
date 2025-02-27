@@ -45,3 +45,13 @@ export interface Radio {
   coverUrl: string;
   description: string;
 }
+
+export interface PlaybackState {
+  isPlaying: boolean;
+  currentTime: number;
+  duration: number;
+  volume: number;
+  isMuted: boolean;
+  isShuffleOn: boolean;
+  isRepeatOn: boolean;
+}
