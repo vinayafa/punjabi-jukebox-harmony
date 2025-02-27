@@ -1,4 +1,6 @@
 
+import { Artist, Album, Playlist, Song, Radio } from "@/types";
+
 export const featuredArtists: Artist[] = [
   {
     id: "artist1",

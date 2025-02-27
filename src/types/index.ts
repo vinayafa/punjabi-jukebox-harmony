@@ -1,5 +1,5 @@
 
-interface Artist {
+export interface Artist {
   id: string;
   name: string;
   imageUrl: string;
@@ -7,7 +7,7 @@ interface Artist {
   bio: string;
 }
 
-interface Album {
+export interface Album {
   id: string;
   title: string;
   artist: string;
@@ -17,7 +17,7 @@ interface Album {
   artistId: string;
 }
 
-interface Playlist {
+export interface Playlist {
   id: string;
   name: string;
   description: string;
@@ -27,7 +27,7 @@ interface Playlist {
   songs: string[];
 }
 
-interface Song {
+export interface Song {
   id: string;
   title: string;
   artist: string;
@@ -39,7 +39,7 @@ interface Song {
   audioUrl: string;
 }
 
-interface Radio {
+export interface Radio {
   id: string;
   name: string;
   coverUrl: string;

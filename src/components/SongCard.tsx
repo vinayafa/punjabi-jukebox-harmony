@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Play, Pause, Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Song } from "@/types";
 
 interface SongCardProps {
   song: Song;

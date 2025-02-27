@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Play, Pause, Heart, MoreHorizontal, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Song } from "@/types";
 
 interface SongRowProps {
   song: Song;

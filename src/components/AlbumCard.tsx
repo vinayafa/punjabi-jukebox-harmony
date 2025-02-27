@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Play, Pause } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Album } from "@/types";
 
 interface AlbumCardProps {
   album: Album;

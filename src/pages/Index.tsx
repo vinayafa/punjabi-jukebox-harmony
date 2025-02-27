@@ -19,6 +19,7 @@ import {
   recentlyPlayed
 } from "@/data/mockData";
 import { cn } from "@/lib/utils";
+import { Song, Album, Playlist } from "@/types";
 
 const Index = () => {
   const [currentSong, setCurrentSong] = useState<Song | null>(null);

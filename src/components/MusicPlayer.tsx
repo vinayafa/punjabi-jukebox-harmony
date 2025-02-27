@@ -6,6 +6,7 @@ import {
   Heart, ListMusic, MoreHorizontal
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Song } from "@/types";
 
 interface MusicPlayerProps {
   song?: Song | null;

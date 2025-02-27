@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { MusicOff } from "lucide-react";
+import { MicOff } from "lucide-react";
 
 const NotFound = () => {
   const location = useLocation();
@@ -19,7 +19,7 @@ const NotFound = () => {
       <div className="text-center max-w-md px-4">
         <div className="flex justify-center mb-6">
           <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center animate-pulse">
-            <MusicOff className="h-12 w-12 text-primary" />
+            <MicOff className="h-12 w-12 text-primary" />
           </div>
         </div>
         <h1 className="text-4xl font-bold mb-2">404</h1>
